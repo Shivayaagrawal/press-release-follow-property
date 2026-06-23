@@ -1,0 +1,754 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  background: #1e1810;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, #2a2010 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, #251e0e 0%, transparent 50%);
+}
+
+/* ── PAPER ── */
+.paper-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.paper-wrap::before,
+.paper-wrap::after {
+  content: "";
+  position: absolute;
+  background: #d4c9a8;
+  border: 1px solid #b5a880;
+}
+
+.paper-wrap::before {
+  inset: 6px -6px -6px 6px;
+  z-index: 0;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.paper-wrap::after {
+  inset: 3px -3px -3px 3px;
+  z-index: 1;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.paper {
+  position: relative;
+  z-index: 2;
+  background: #ede4cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  border: 1px solid #c4b890;
+  transform: rotate(-0.25deg);
+  box-shadow:
+    0 0 0 1px #b8a878,
+    3px 3px 0 #c4b480,
+    6px 6px 0 #b5a570,
+    9px 9px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 80px rgba(0, 0, 0, 0.05),
+    inset 60px 0 120px rgba(0, 0, 0, 0.03),
+    inset -60px 0 120px rgba(0, 0, 0, 0.03),
+    inset 0 -80px 120px rgba(0, 0, 0, 0.04);
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  background:
+    linear-gradient(
+      102deg,
+      transparent 49.5%,
+      rgba(0, 0, 0, 0.035) 49.5%,
+      rgba(0, 0, 0, 0.035) 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      98deg,
+      transparent 74.5%,
+      rgba(255, 255, 255, 0.04) 74.5%,
+      rgba(255, 255, 255, 0.04) 75%,
+      transparent 75%
+    ),
+    radial-gradient(ellipse at 8% 12%, rgba(0, 0, 0, 0.07) 0%, transparent 30%),
+    radial-gradient(ellipse at 92% 8%, rgba(0, 0, 0, 0.05) 0%, transparent 25%),
+    radial-gradient(ellipse at 15% 88%, rgba(0, 0, 0, 0.06) 0%, transparent 28%),
+    radial-gradient(ellipse at 88% 92%, rgba(0, 0, 0, 0.05) 0%, transparent 22%),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 35%,
+      rgba(0, 0, 0, 0.04) 100%
+    );
+}
+
+.paper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(225deg, #c8bc98 45%, #ede4cc 45%);
+  z-index: 21;
+  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.inner {
+  position: relative;
+  z-index: 5;
+  padding: 1.4rem 1.6rem 2rem;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  border-top: 3px solid #1a1209;
+  border-bottom: 3px solid #1a1209;
+  margin-bottom: 4px;
+}
+
+.mast-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #3a2e1a;
+  margin-bottom: 0.4rem;
+  font-size: 10px;
+  color: #5a4830;
+  letter-spacing: 0.04em;
+}
+
+.paper-name {
+  font-family: var(--font-unifraktur), "UnifrakturMaguntia", cursive;
+  font-size: 3.4rem;
+  color: #12100a;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.paper-tagline {
+  text-align: center;
+  font-size: 9.5px;
+  color: #5a4830;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.25rem 0 0.3rem;
+  border-top: 1px solid #c4b080;
+  margin-top: 0.3rem;
+}
+
+/* ── TICKER ── */
+.ticker-outer {
+  background: #12100a;
+  border-top: 2px solid #c9a84c;
+  border-bottom: 2px solid #c9a84c;
+  overflow: hidden;
+  margin: 0.6rem 0;
+  padding: 0.3rem 0;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: scroll 28s linear infinite;
+  font-size: 10px;
+  color: #ddd4b8;
+  letter-spacing: 0.06em;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.t-gold {
+  color: #c9a84c;
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
+
+.t-up {
+  color: #7fbf7f;
+}
+
+.t-dn {
+  color: #e07878;
+}
+
+/* ── FILTERS ── */
+.filter-section {
+  padding: 0.6rem 0;
+  border-bottom: 2.5px solid #12100a;
+  margin-bottom: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.f-group-label {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #12100a;
+  font-weight: 700;
+  margin-right: 0.2rem;
+  padding-right: 0.4rem;
+  border-right: 1.5px solid #8a7850;
+}
+
+.f-sep {
+  width: 1.5px;
+  height: 20px;
+  background: #8a7850;
+  margin: 0 0.3rem;
+  align-self: center;
+}
+
+.fb-city {
+  background: transparent;
+  border: 2px solid #7a3515;
+  color: #7a3515;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1.4;
+}
+
+.fb-city:hover,
+.fb-city.active {
+  background: #7a3515;
+  color: #ede4cc;
+}
+
+.fb-type {
+  background: transparent;
+  border: 2px solid #1e4a1e;
+  color: #1e4a1e;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1.4;
+}
+
+.fb-type:hover,
+.fb-type.active {
+  background: #1e4a1e;
+  color: #ede4cc;
+}
+
+/* ── BREAKING BAR ── */
+.breaking {
+  background: #12100a;
+  color: #c9a84c;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.32rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+  overflow: hidden;
+}
+
+.breaking-label {
+  background: #c9a84c;
+  color: #12100a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.12rem 0.4rem;
+  flex-shrink: 0;
+}
+
+.breaking-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #c9a84c;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 1.3s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* ── RATE CARDS ── */
+.rates-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.rate-card {
+  background: #12100a;
+  color: #ede4cc;
+  padding: 0.75rem 1rem;
+  border: 1px solid #2a2416;
+  box-shadow:
+    2px 3px 8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.rate-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #c9a84c;
+}
+
+.rate-card.noida {
+  background: #0e1e0e;
+  border-color: #1e3a1e;
+}
+
+.rate-card.delhi {
+  background: #1e0e0a;
+  border-color: #3a1a10;
+}
+
+.rc-city {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 0.25rem;
+}
+
+.rc-num {
+  font-family: var(--font-playfair), "Playfair Display", serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #f0e8d0;
+  line-height: 1;
+}
+
+.rc-unit {
+  font-size: 9px;
+  color: #8a7a5a;
+  margin-top: 0.15rem;
+}
+
+.rc-chg {
+  font-size: 10px;
+  margin-top: 0.3rem;
+}
+
+.up {
+  color: #7fbf7f;
+}
+
+.dn {
+  color: #e07878;
+}
+
+/* ── MAIN GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border-right: 1px solid #c0ae84;
+  padding-right: 1rem;
+  min-width: 0;
+}
+
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+/* ── ARTICLE CARDS ── */
+.card {
+  background: #e8ddc4;
+  border: 1px solid #c0ae84;
+  padding: 0.85rem 1rem;
+  position: relative;
+  box-shadow:
+    1px 1px 0 #d4c498,
+    2px 2px 0 #c8b888,
+    3px 3px 8px rgba(0, 0, 0, 0.2),
+    inset 0 0 30px rgba(0, 0, 0, 0.025);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 12% 10%,
+    rgba(255, 255, 255, 0.07) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card.feat {
+  border-top: 4px solid #12100a;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.tag {
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.13rem 0.38rem;
+  line-height: 1.5;
+}
+
+.tag-dark {
+  background: #12100a;
+  color: #ede4cc;
+}
+
+.tag-govt {
+  background: #6b2e10;
+  color: #f0e0d0;
+}
+
+.tag-res {
+  background: #1a3a12;
+  color: #d8f0d0;
+}
+
+.tag-com {
+  background: #102040;
+  color: #c8d8f0;
+}
+
+.tag-rate {
+  background: #40300a;
+  color: #f0e0b8;
+}
+
+.tag-metro {
+  background: #28104a;
+  color: #d8c8f0;
+}
+
+.tag-buyer {
+  background: #0a3040;
+  color: #c0e0f0;
+}
+
+.age {
+  font-size: 9px;
+  color: #7a6848;
+  font-style: italic;
+  margin-left: auto;
+}
+
+.hl {
+  font-family: var(--font-playfair), "Playfair Display", serif;
+  font-weight: 900;
+  color: #12100a;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.hl-lg {
+  font-size: 1.35rem;
+}
+
+.hl-md {
+  font-size: 1rem;
+}
+
+.hl-sm {
+  font-size: 0.88rem;
+}
+
+.byline {
+  font-size: 9.5px;
+  color: #7a6848;
+  font-style: italic;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.02em;
+}
+
+.body-text {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: #2a2010;
+  font-style: italic;
+  text-align: justify;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid #c0ae84;
+  margin: 0.55rem 0;
+}
+
+.act-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1.5px solid #12100a;
+  color: #12100a;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.55rem;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  transition: background 0.12s, color 0.12s;
+  text-decoration: none;
+}
+
+.act-btn:hover {
+  background: #12100a;
+  color: #ede4cc;
+}
+
+.act-btn + .act-btn {
+  margin-left: 0.4rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-head span {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5a4830;
+  white-space: nowrap;
+}
+
+.section-head hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #c0ae84;
+}
+
+.footer {
+  background: #12100a;
+  color: #8a7858;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 1.2rem;
+  margin-top: 0.9rem;
+  border-top: 2px solid #c9a84c;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footer span:first-child {
+  color: #c9a84c;
+}
+
+.footer a {
+  color: #8a7858;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #c9a84c;
+}
+
+/* ── ADMIN (desk page) ── */
+.admin-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #12100a;
+}
+
+.admin-input {
+  width: 100%;
+  border: 2px solid #8a7850;
+  background: #f5eed8;
+  padding: 0.4rem 0.5rem;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 12px;
+  color: #12100a;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: #7a3515;
+}
+
+.admin-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.admin-btn {
+  border: 2px solid #12100a;
+  background: transparent;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-fell), "IM Fell English", serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #12100a;
+}
+
+.admin-btn:hover:not(:disabled) {
+  background: #12100a;
+  color: #ede4cc;
+}
+
+.admin-btn-primary {
+  background: #7a3515;
+  border-color: #7a3515;
+  color: #ede4cc;
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: #5a2810;
+  border-color: #5a2810;
+}
+
+.admin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rate-inline {
+  background: #12100a;
+  border: 1px solid #c0ae84;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: #ede4cc;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 680px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  .inner {
+    padding: 1rem 1rem 1.5rem;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .col-left {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .rates-row {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-name {
+    font-size: 2.4rem;
+  }
+
+  .mast-top {
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
